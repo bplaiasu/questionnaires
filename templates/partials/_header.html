@@ -1,0 +1,57 @@
+{% load static %}
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="{% url 'quizes:enter_platform' %}">
+        <img src="{% static 'img/logo.svg' %}" alt="Company Logo" class="brand_img" height="40" class="d-inline-block align-text-top">
+    </a>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end" id="registrations">
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'accounts:dashboard' %}" 
+                    {% if 'dashboard' in request.path %}
+                        class="nav-link px-2 text-white" aria-current="page"
+                    {% else %}
+                        class="nav-link px-2"
+                    {% endif %}
+                >
+                Welcome {{ user.username }} (Dashboard)
+                </a>
+            </li>
+            <li class="nav-item mr-3">
+                <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                    <i class="fa-solid fa-sign-out-alt"></i> Logout
+                </a>
+                <form action="{% url 'accounts:logout' %}" id="logout" method="post">
+                    {% csrf_token %}
+                    <input type="hidden">
+                </form>
+            </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'accounts:login' %}" 
+                        {% if 'login' in request.path %}
+                            class="nav-link px-2 text-white" aria-current="page"
+                        {% else %}
+                            class="nav-link px-2"
+                        {% endif %}
+                    >
+                    <i class="fa-solid fa-right-to-bracket"></i> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'accounts:register' %}"
+                        {% if 'register' in request.path %}
+                            class="nav-link px-2 text-white" aria-current="page"
+                        {% else %}
+                            class="nav-link px-2"
+                        {% endif %}
+                    >
+                        <i class="fa-solid fa-user-plus"></i> Register
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</header>

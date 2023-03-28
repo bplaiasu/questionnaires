@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register Account - {% endblock %}
+
+
+{% block navbar %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+
+{% block content %}
+<section id="register" class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>
+                            <i class="fas fa-user-plus"></i> Register
+                        </h4>
+                    </div>
+                    
+                    <div class="card-body">
+                        <!-- Alerts -->
+                        {% include 'partials/_alerts.html' %}
+                        
+                        <form action="{% url 'accounts:register' %}" method="POST">
+                            {% csrf_token %}
+
+                            <div class="form-floating mb-3">
+                                <input type="text" name="first_name" class="form-control" required>
+                                <label for="first_name">First Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="last_name" class="form-control" required>
+                                <label for="last_name">Last Name</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" name="username" class="form-control" required>
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email" class="form-control" required>
+                                <label for="email">Email</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="password" class="form-control" required>
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="password2" class="form-control" required>
+                                <label for="password2">Confirm Password</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 mx-0 mb-2">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

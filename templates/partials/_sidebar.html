@@ -1,0 +1,56 @@
+{% load static %}
+
+<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <div class="position-sticky pt-3 sidebar-sticky">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a 
+                    {% if 'platform' in request.path %}
+                        class="nav-link active" aria-current="page"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                    href="{% url 'quizes:enter_platform' %}">
+                    <i class="fa-solid fa-house"></i>
+                    Acasa
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    {% if 'preparation' in request.path %}
+                        class="nav-link active" aria-current="page"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %}
+                    href="{% url 'quizes:preparation' %}">
+                    <i class="fa-solid fa-file-lines"></i>
+                    Pregatire
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    {% if 'simulation_a' in request.path %}
+                            class="nav-link active" aria-current="page"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %} 
+                        href="{% url 'quizes:sim_a' %}">
+                    <i class="fa-solid fa-desktop"></i>
+                    Simulator examen A
+                </a>
+            </li>
+            <li class="nav-item">
+                <a 
+                    {% if 'simulation_rnd' in request.path %}
+                        class="nav-link active" aria-current="page"
+                    {% else %}
+                        class="nav-link"
+                    {% endif %} 
+                    href="{% url 'quizes:sim_b' %}">
+                    <i class="fa-solid fa-laptop"></i>
+                    Simulator examen B
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Pregatire - {% endblock %}
+
+
+{% block navbar %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'partials/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-5 fw-bold lh-1 mb-3">
+            Ce este Lorem Ipsum?
+        </h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+                Lorem Ipsum a fost macheta standard a industriei încă din secolul al XVI-lea, când un tipograf anonim a luat o planşetă de litere şi le-a amestecat pentru a crea o carte demonstrativă pentru literele respective.
+            </p>
+        </div>
+        <div class="overflow-hidden" style="max-height: 30vh;">
+            <div class="container px-5">
+                <img src="https://picsum.photos/id/111/1600/580?grayscale" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="row">
+        <!-- if are categories in database -->
+        {% if categories %}
+            <!-- loop through each category -->
+            {% for category in categories %}
+                <!-- list only active categories -->
+                <div class="col-lg-4 mb-1">
+                    <h2 class="fw-normal">{{ category.name }}</h2>
+                    <p>Lorem Ipsum este pur şi simplu o machetă pentru text a industriei tipografice. </p>
+                    <p class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a class="btn btn-link btn-sm" href="{% url 'quizes:category' category.id 1 %}" id="category{{ category.id }}">Start {{ category.name|lower }} »</a>
+                    </p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nici o categorie disponibila</p>
+        {% endif %}
+    </div>
+
+    
+</main>
+{% endblock %}
