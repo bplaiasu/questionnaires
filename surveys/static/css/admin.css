@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --white: #f1faee;
+    --red: #e63946;
+    --dark-blue: #1d3557;
+    --medium-blue: #457b9d;
+    --light-blue: #a8dadc;
+    --light-red: #ffccd5;
+    --dark-red: #d90429;
+
+    /* subtmit button colors - login */
+    --button-bg: var(--red);
+    --button-fg: var(--white);
+    --button-hover-bg: var(--dark-blue);
+
+    /* actual admin page */
+    --primary: var(--red);
+    --header-link-color: var(--white);
+    --hairline-color: #e8e8e8;
+    --header-bg: #fff;
+    --border-color: #ccc;
+    --link-hover-color: var(--dark-red);
+    --body-quiet-color: #666;
+;}
+
+/* login */
+html, body {
+    font-family: 'Catamaran', sans-serif !important;
+    --body-fg: var(--dark-blue);
+    --darkened-bg: #f8f8f8;
+    --body-bg: #fff;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], 
+input[type="number"], input[type="tel"], textarea, select, .vTextField {
+    --body-bg: #fff;
+}
+
+.login #header {
+    background-color: #fff;
+    color: #000;
+}
+
+.login #container {
+    border: 1px solid var(--hairline-color);
+    border-radius: 4px;
+}
+
+#branding h1 {
+    color: var(--red);
+}
+
+
+/* start - actual admin page */
+#content h1 {
+    --body-quiet-color: var(--dark-blue);
+}
+
+td, th {
+    font-size: 14px;
+}
+
+.toggle-nav-sidebar {
+    --link-fg: var(--dark-blue);
+}
+
+.object-tools a:link, .object-tools a:visited {
+    --object-tools-bg: var(--medium-blue);
+}
+
+.object-tools a:focus, .object-tools a:hover {
+    --object-tools-hover-bg: var(--dark-blue);
+}
+
+.button.default:active, input[type="submit"].default:active, .button.default:focus, input[type="submit"].default:focus, .button.default:hover, input[type="submit"].default:hover {
+    --default-button-hover-bg: var(--dark-blue);
+}
+
+.paginator {
+    font-size: 0.95rem;
+}
+/* end - admin page */
+
+
+/* recent actions - right menu */
+#content-related .module h2 {
+    --body-fg: var(--dark-blue);
+}
+
+#content-related h3 {
+    --body-quiet-color: var(--dark-blue);
+}
+
+.quiet, a.quiet:link, a.quiet:visited {
+    --body-quiet-color: var(--dark-blue);
+}
+/* end recent actions */
+
+
+/* start - user tools */
+#user-tools, #user-tools a {
+    color: var(--dark-blue) !important;
+    --header-link-color: var(--red);
+    font-size: 12px;
+}
+
+#logout-form button {
+    font-weight: bold;
+}
+
+#nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {
+    --header-color: var(--white);
+}
+
+#nav-sidebar .current-model {
+    --selected-row: var(--light-red);
+}
+/* end - user tools */
+
+/* links */
+a:link, a:visited {
+    --link-fg: var(--medium-blue);
+}
+
+/* a:focus, a:hover {
+    --link-fg: var(--red);
+} */
+/* #content a:link{
+    --link-fg: var(--dark-blue);
+} */
+/* a:link {
+    --link-fg: var(--dark-blue);
+}
+
+a:hover {
+    --breadcrumbs-fg: var(--white);
+} */
+
+
+
+
+
+
+/* body, #nav-sidebar {
+    background: #fff;
+}
+
+
+
+
+
+
+
+div.breadcrumbs {
+    --breadcrumbs-bg: var(--red);
+    color: var(--dark-blue);
+    font-size: 15px;
+}
+
+div.breadcrumbs a {
+    color: var(--dark-blue);
+}
+
+
+
+
+
+
+
+
+.selector-chosen h2 {
+    --primary: var(--light-red);
+    --header-link-color: var(--dark-blue);
+}
+
+.submit-row a.deletelink {
+    --delete-button-bg: var(--red);
+    --button-fg: var(--white);
+}
+
+
+.button.default, input[type=submit].default, .submit-row input.default {
+    --default-button-bg: var(--medium-blue);
+}
+
+.button.default:active, input[type=submit].default:active, .button.default:focus, input[type=submit].default:focus, .button.default:hover, input[type=submit].default:hover {
+    --default-button-hover-bg: var(--dark-blue);
+}
+
+.calendar caption, .calendarbox h2 {
+    --accent: var(--light-red);
+}
+
+.calendar td.selected a {
+    --primary: var(--light-blue);
+    --button-fg: var(--dark-blue);
+}
+
+
+
+ */

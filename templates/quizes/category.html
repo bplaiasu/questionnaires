@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pregatire {{ category }} - {% endblock %}
+
+
+{% block navbar %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'partials/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'quizes:preparation' %}">Pregatire</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{ category }}</li>
+        </ol>
+    </nav>
+
+    <div class="album py-5 ">
+        <div class="container">
+            {% include 'partials/_alerts.html' %}
+            <h1>{{ category }}</h1>
+        </div>
+    </div>
+
+    
+    <div id="show_score"></div>
+
+    <div>
+        <p id="test">
+            Question <span id="current_question">{{ questions.number }}</span> of <span id="total_questions">{{ questions.paginator.num_pages }}</span>.
+            Raspunsuri corecte: <span id="correct_answers">0</span>
+            Raspunsuri gresite: <span id="incorrect_answers">0</span>
+        </p>
+    </div>
+
+    {% for question in questions %}
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">{{ question.text }}</h5>
+            </div>
+            <div class="card-body">
+                {% if question.photo %}
+                    <img src="{{ question.photo.url }}" alt="" height="150" width="150">
+                {% endif %}
+                <div class="list-group list-group-radio d-grid gap-3 border-0 w-auto">
+                    {% for answer in answers %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answer_question_{{ question.id }}" value="{{ answer.correct }}" id="answer{{ forloop.counter }}" onclick="checkAnswer();">
+                            <label class="form-check-label" for="answer{{ forloop.counter }}">
+                                {{ answer.text }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                </div>
+                
+                {% if questions.has_next %}
+                    <a href="{% url 'quizes:category' category.id question.get_next.id %}?page={{ questions.next_page_number }}" class="btn btn-primary disabled" aria-disabled="true" tabindex="-1" id="next_question">Next question</a>
+                {% else %}
+                    <form action="{% url 'quizes:save_quiz' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="correct" name="correct_answers" value="0" />
+                        <input type="hidden" id="incorrect" name="incorrect_answers" value="0" />
+                        <button type="submit" class="btn btn-primary w-100 mx-0 mb-2">Salveaza</button>
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+
+        <p id="output"></p>
+    {% endfor %}
+
+    
+    
+</main>
+
+<script>
+    document.body.onload = function() {
+        checkForPage1();
+    }
+</script>
+{% endblock %}

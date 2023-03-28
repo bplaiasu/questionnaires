@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Simulare examen C - {% endblock %}
+
+
+{% block navbar %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'partials/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1>simulare examen c</h1>
+    </div>
+
+    {% include 'partials/_alerts.html' %}
+    
+    {% if categories %}
+    <div class="bd-example">
+        <nav>
+            <div class="nav nav-tabs mb-5" id="nav-tab" role="tablist">
+                {% for category in categories %}
+                    {% if active_category == category.id %}
+                        <button class="nav-link active" id="nav-{{ category.name|lower }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ category.name|lower }}" type="button" role="tab" aria-controls="nav-{{ category.name|lower }}" aria-selected="true">{{ category.name|capfirst }}</button>
+                    {% else %}
+                        <button class="nav-link disabled" id="nav-{{ category.name|lower }}-tab" data-bs-toggle="tab" data-bs-target="#nav-{{ category.name|lower }}" type="button" role="tab" aria-controls="nav-{{ category.name|lower }}" aria-selected="false">{{ category.name|capfirst }}</button>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div>
+                <p id="test">
+                    Intrebarea <span id="current_question">{{ first_category_page_questions.number }}</span> din <span id="total_questions">{{ first_category_page_questions.paginator.num_pages }}</span>.
+                    Raspunsuri corecte: <span id="correct_answers">0</span>
+                    Raspunsuri gresite: <span id="incorrect_answers">0</span>
+                </p>
+            </div>
+            <div class="card">
+                {% for question in first_category_page_questions %}
+                    <div class="card-header">
+                        <h5 class="card-title">{{question.text}}</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if question.photo %}
+                            <img src="{{ question.photo.url }}" alt="" height="150" width="150">
+                        {% endif %}
+                        <div class="list-group list-group-radio d-grid gap-3 border-0 w-auto">
+                            {% for answer in first_categ_answers %}
+                                {% if question.id == answer.question.id %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="answer_question_{{ question.id }}" value="{{ answer.correct }}" id="answer{{ forloop.counter }}" onclick="checkAnswer();">
+                                        <label class="form-check-label" for="answer{{ forloop.counter }}">
+                                            {{ answer.text }}
+                                        </label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+
+                        {% if first_category_page_questions.has_next %}
+                            <a href="{% url 'quizes:sima-start-test' next_question %}?page={{ first_category_page_questions.next_page_number }}" class="btn btn-primary disabled" aria-disabled="true" tabindex="-1" id="next_question">Next question</a>
+                            <form action="{% url 'quizes:save_quiz_details' %}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" id="correct" name="correct_answers" value="0" />
+                                <input type="hidden" id="incorrect" name="incorrect_answers" value="0" />
+        
+                                <button type="submit" class="btn btn-primary w-100 mx-0 mb-2">Salveaza</button>
+                            </form>
+                        {% else %}
+                            sdsds
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</main>
+
+<script>
+    document.body.onload = function() {
+        updateUI();
+    }
+</script>
+{% endblock %}

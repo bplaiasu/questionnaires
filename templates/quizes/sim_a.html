@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Simulare examen C - {% endblock %}
+
+
+{% block navbar %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'partials/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+        <h1 class="display-5 fw-bold lh-1 mb-3">
+            Simulator examen A
+        </h1>
+        <div class="overflow-hidden" style="max-height: 30vh;">
+            <div class="container px-5">
+                <img src="https://picsum.photos/id/36/1500/580" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="700" height="500" loading="lazy">
+            </div>
+        </div>
+    </div>
+    
+    {% include 'partials/_alerts.html' %}
+
+    <div class="row">
+        <p class="italic mb-4">Simulatorul are 26 de intrebari impartite pe 4 categorii:</p>
+    </div>
+
+    <div class="row">
+        <!-- if are categories in database -->
+        {% if categories %}
+            <!-- loop through each category -->
+            {% for category in categories %}
+                <!-- list only active & have simulator_exam_c=True categories -->
+                <div class="col-lg-3 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h2 class="card-title mb-5">{{ category.name|capfirst }}</h2>
+                            <p class="card-text"><small class="text-muted">{{ category.sim_ex_a_questions }} intrebari</small></p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Nici o categorie disponibila</p>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <p class="italic">Pentru a promova trebuie sa raspunzi corect la minim 22 de intrebari.<br/>Mult succes!</p>
+
+        <div class="">
+            <p class="d-grid gap-2 d-md-flex justify-content-md-center">
+                <a class="btn btn-primary" href="{% url 'quizes:sima-start-test'%}" id="start_simc_test">PORNESTE TESTUL!</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.body.onload = function() {
+        checkForPage1();
+    }
+</script>
+{% endblock %}

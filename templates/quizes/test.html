@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}TEST{% endblock %}
+
+
+{% block navbar %}
+    {% include 'partials/_header.html' %}
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'partials/_sidebar.html' %}
+{% endblock %}
+
+
+{% block content %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    {% include 'partials/_alerts.html' %}
+
+    <div class="row">
+        <h3>Nici o categorie disponibila!</h3>
+        <p class="italic mb-4">Mergeti in zona de administrate pentru a introduce categorii</p>
+    </div>
+
+
+</main>
+
+{% endblock %}
