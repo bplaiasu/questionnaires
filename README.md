@@ -46,3 +46,10 @@ If nothing is shown than everything is ok
 `python manage.py createsuperuser`
 13. run server:\
 `python manage.py runserver`
+
+---
+## Technologies used:
+- [django framework](https://www.djangoproject.com)
+- [bootstrap](https://getbootstrap.com)
+- [postgresql](https://www.postgresql.org)
+- javascript

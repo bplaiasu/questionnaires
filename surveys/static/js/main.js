@@ -28,12 +28,9 @@ function checkForPage1() {
             localStorage.setItem('correct', 0);
             localStorage.setItem('incorrect', 0);
         }
-        // console.log('asdsad');
-        // updateUI();
     } else{
         localStorage.setItem('correct', 0);
         localStorage.setItem('incorrect', 0);
-        // console.log('test');
     }
 
     if (document.getElementById("correct_answers") && document.getElementById("incorrect_answers")) {
@@ -45,7 +42,6 @@ function checkForPage1() {
 function updateUI() {
     // get localStorage object
     obj = Object(localStorage);
-    // console.log(obj);
     
     // check if correct and incorrect keys exist in localStorage obj
     if ('correct' in obj && 'incorrect' in obj) {
@@ -68,11 +64,6 @@ function checkAnswer() {
     
     // apply css class for correct or wrong answer 
     if (selected === correct_answer) {
-        // if (pth_name != '/sima-start-test') {
-        //     console.log('sdffdsfsd');
-        // } else {
-        //     console.log('aaaaaa');
-        // }
         // find the correct element for applying the class
         if (pth_name != 'sima-start-test') {
             document.getElementById(selected.id).nextElementSibling.classList.add('correct');
@@ -90,7 +81,6 @@ function checkAnswer() {
             // also show the correct answer
             document.getElementById(correct_answer.id).nextElementSibling.classList.add('correct');
         }
-
 
         // get the current value from localStorage
         incorrect_answers = parseInt(localStorage.getItem('incorrect'));
@@ -161,5 +151,4 @@ function saveScore() {
     // fill hidden inputs with the above values
     correct_score = document.getElementById('correct').value = correctAnswers;
     incorrect_score = document.getElementById('incorrect').value = incorrectAnswers;
-    // alert(correct_score+';'+incorrect_score);
 }
